@@ -22,6 +22,12 @@ data "aws_subnets" "my_subnets" {
 }
 
 
+resource "aws_s3_object" "object_job" {
+    key = "terraform.tf"
+    bucket = aws_s3_bucket.money_bucket.id
+    source = "terraform.tf"
+    region = "ap-northeasst-3"
+}
 
 #	Cluster-role.tf
 
