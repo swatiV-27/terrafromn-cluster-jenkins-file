@@ -22,11 +22,12 @@ data "aws_subnets" "my_subnets" {
 }
 
 
-resource "aws_s3_object" "object_job" {
-    key = "terraform.tf"
-    bucket = aws_s3_bucket.money_bucket.id
-    source = "terraform.tf"
-    region = "ap-northeasst-3"
+terraform {
+  backend "s3" {
+    bucket         = "bucket-name"
+    key            = "eks-cluster/terraform.tfstate"
+    region         = "ap-northeast-3"
+  }
 }
 
 #	Cluster-role.tf
@@ -125,7 +126,7 @@ resource "aws_eks_node_group" "eks_node" {
   scaling_config {
     desired_size = 2
     max_size     = 2
-    min_size     = 2
+    min_size     = 1
   }
   instance_types = ["m7i-flex.large"]
   update_config {
