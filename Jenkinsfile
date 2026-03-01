@@ -1,6 +1,7 @@
 pipeline {
     agent any 
-  stage('git-pull') {
+ stages {
+    stage('git-pull') {
             steps {
                 git branch: 'main', url: 'https://github.com/your-repo/eks-infra.git'
                 echo "git pull successful"
@@ -14,19 +15,19 @@ pipeline {
         }
    stage('terraform-plan') {
             steps {
-                sh 'terraform plan '
+                sh 'terraform plan main.tf'
                 echo "terraform plan successful"
             }
         }
     stage('Approval') {
             steps {
-                input message: "Approve Terraform Apply for EKS Cluster?", ok: "Approve"
+               input message: "Approve Terraform Apply for EKS Cluster?", ok: "Approve"
             }
         }
 
         stage('terraform-apply') {
             steps {
-                sh 'terraform apply  -f'
+                sh 'terraform apply  -f main.tf'
                 echo "terraform apply successful"
             }
         }
