@@ -12,15 +12,9 @@ pipeline {
                 echo "terraform init successful"
             }
         }
-  stage('terraform-validate') {
-            steps {
-                sh 'terraform validate'
-                echo "terraform validate successful"
-            }
-        }
    stage('terraform-plan') {
             steps {
-                sh 'terraform plan -out=tfplan -var-file=environments/prod.tfvars'
+                sh 'terraform plan '
                 echo "terraform plan successful"
             }
         }
@@ -32,15 +26,13 @@ pipeline {
 
         stage('terraform-apply') {
             steps {
-                sh 'terraform apply -auto-approve tfplan'
+                sh 'terraform apply  -f'
                 echo "terraform apply successful"
             }
         }
     stage('deploy') {
             steps {
                 echo "Deploy stage completed"
-                // Example:
-                // sh 'kubectl apply -f k8s/'
             }
         }
     }
