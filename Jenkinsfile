@@ -15,7 +15,7 @@ pipeline {
         }
    stage('terraform-plan') {
             steps {
-                sh 'terraform plan main.tf'
+                sh 'terraform plan'
                 echo "terraform plan successful"
             }
         }
@@ -27,7 +27,7 @@ pipeline {
 
         stage('terraform-apply') {
             steps {
-                sh 'terraform apply  -f main.tf'
+                sh 'terraform apply -auto-approve'
                 echo "terraform apply successful"
             }
         }
