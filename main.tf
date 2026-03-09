@@ -59,7 +59,7 @@ resource "aws_iam_role_policy_attachment" "cluster_AmazonEKSClusterPolicy" {
 
 
 
-4.	Node-role.tf
+#Node-role.tf
 
 
 
