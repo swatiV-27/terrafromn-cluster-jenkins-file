@@ -24,7 +24,7 @@ data "aws_subnets" "my_subnets" {
 
 terraform {
   backend "s3" {
-    bucket         = "bucket-name"
+    bucket         = "amzn-09-03-indore"   #BucketName
     key            = "eks-cluster/terraform.tfstate"
     region         = "ap-northeast-3"
   }
