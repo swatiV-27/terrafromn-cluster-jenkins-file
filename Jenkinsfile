@@ -3,7 +3,7 @@ pipeline {
  stages {
     stage('git-pull') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-repo/eks-infra.git'
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/swatiV-27/terrafromn-cluster-jenkins-file.git'
                 echo "git pull successful"
             }
         }
